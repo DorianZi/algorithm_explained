@@ -45,3 +45,6 @@
 <img src="https://latex.codecogs.com/gif.latex?(&space;\alpha_{1},\alpha_{2},\alpha_{3},...,\alpha_{n}&space;)=&space;(\beta_{1},\beta_{2},\beta_{3},...,\beta_{n})&space;\begin{bmatrix}&space;k_{11}&space;&&space;k_{12}&space;&&space;k_{13}&space;&&space;...&space;&&space;k_{1n}\\&space;0&space;&&space;k_{22}&space;&&space;k_{23}&space;&&space;...&space;&&space;k_{2n}\\&space;0&space;&&space;0&space;&&space;k_{33}&space;&&space;...&space;&&space;k_{3n}\\&space;...&space;&&space;...&space;&&space;...&space;&&space;...&space;&&space;...\\&space;0&space;&&space;0&space;&&space;0&space;&&space;...&space;&&space;k_{nn}&space;\end{bmatrix}\right" title="( \alpha_{1},\alpha_{2},\alpha_{3},...,\alpha_{n} )= (\beta_{1},\beta_{2},\beta_{3},...,\beta_{n}) \begin{bmatrix} k_{11} & k_{12} & k_{13} & ... & k_{1n}\\ 0 & k_{22} & k_{23} & ... & k_{2n}\\ 0 & 0 & k_{33} & ... & k_{3n}\\ ... & ... & ... & ... & ...\\ 0 & 0 & 0 & ... & k_{nn} \end{bmatrix}\right" />
 
 以上即为A=QR分解。
+
+---
+参考文档：https://blog.csdn.net/u010945683/article/details/45972819
