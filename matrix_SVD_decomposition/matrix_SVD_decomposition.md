@@ -15,17 +15,18 @@ SVD分解即奇异值分解， 可以从特征值分解推导而来。先理解�
 
 换基不影响坐标值，所以原基下的坐标(1,1)，变换后在新基下的坐标也是(1,1），而在“绝对”坐标系中坐标为(4,2)
 
+<img src="https://latex.codecogs.com/gif.latex?\begin{bmatrix}&space;3&space;&&space;1\\&space;0&space;&&space;2&space;\end{bmatrix}\begin{bmatrix}&space;1\\&space;1&space;\end{bmatrix}=\begin{bmatrix}&space;4\\&space;2&space;\end{bmatrix}" title="\begin{bmatrix} 3 & 1\\ 0 & 2 \end{bmatrix}\begin{bmatrix} 1\\ 1 \end{bmatrix}=\begin{bmatrix} 4\\ 2 \end{bmatrix}" />
+
+<img src="https://github.com/DorianZi/algorithm_explained/raw/master/res/pic_3.png">
+
 在基变换体系下，我们无法直接获得特征向量和特征值的几何意义，以空间拉伸来解释会获得更直观理解。
 
 以<font size=5>空间拉伸</font>来理解，以下线性变换将正方形围住的空间变换成普通平行四边形。大部分向量都被施加了旋转和拉伸（<font color=#8B0000>褐色</font>），只有特征向量<img src="https://latex.codecogs.com/gif.latex?\alpha_{1},\alpha_{2}" title="\alpha_{1},\alpha_{2}" />（<font color=#008000>绿色</font>和<font color=#0000FF>蓝色</font>）所在方向的向量只进行了拉伸，且拉伸效果为相应的特征值<img src="https://latex.codecogs.com/gif.latex?\lambda_{1},\lambda_{2}" title="\lambda_{1},\lambda_{2}" />
 
 <img src="https://github.com/DorianZi/algorithm_explained/raw/master/res/pic1.png">
 
-<img src="https://latex.codecogs.com/gif.latex?\begin{bmatrix}&space;3&space;&&space;1\\&space;0&space;&&space;2&space;\end{bmatrix}\begin{bmatrix}&space;1\\&space;1&space;\end{bmatrix}=\begin{bmatrix}&space;4\\&space;2&space;\end{bmatrix}" title="\begin{bmatrix} 3 & 1\\ 0 & 2 \end{bmatrix}\begin{bmatrix} 1\\ 1 \end{bmatrix}=\begin{bmatrix} 4\\ 2 \end{bmatrix}" />
 
-<img src="https://github.com/DorianZi/algorithm_explained/raw/master/res/pic_3.png">
-
-再回到最上面的图,如果继续不断地对空间施加矩阵A的线性变换(<img src="https://latex.codecogs.com/gif.latex?A^{n}" title="A^{n}" />), 那么特征向量所在方向的向量（<font color=#008000>绿色</font>和<font color=#0000FF>蓝色</font>）会幂级拉伸，非特征向量所以在方向的向量（<font color=#8B0000>褐色</font>）会越来越<font size=5>接近</font>特征向量方向。特殊情况，当<img src="https://latex.codecogs.com/gif.latex?\lambda=1" title="\lambda=1" />时，系统会<font size=5>稳定</font>在特征向量方向。
+再回到最上面的图,如果继续不断地对空间施加矩阵A的线性变换(<img src="https://latex.codecogs.com/gif.latex?A^{n}" title="A^{n}" />), 那么特征向量所在方向的向量（<font color=#008000>绿色</font>和<font color=#0000FF>蓝色</font>）会幂级拉伸，非特征向量所以在方向的向量（<font color=#8B0000>褐色</font>）会越来越<font size=5>接近</font>特征向量方向。特殊情况，当<img src="https://latex.codecogs.com/gif.latex?\lambda=1" title="\lambda=1" />时，系统会<font size=5>稳定</font>在<font size=5>最大</font>特征值对应的特征向量方向。
 <img src="https://github.com/DorianZi/algorithm_explained/raw/master/res/pic4.png">
 
 # 矩阵对角化
@@ -33,10 +34,7 @@ SVD分解即奇异值分解， 可以从特征值分解推导而来。先理解�
 
 <img src="https://latex.codecogs.com/gif.latex?A=P\Lambda&space;P^{-1}" title="A=P\Lambda P^{-1}" />
 
-其中<img src="https://latex.codecogs.com/gif.latex?P" title="P" />为特征矩阵，<img src="https://latex.codecogs.com/gif.latex?\Lambda" title="\Lambda" />为特征值矩阵。又因为正交矩阵的逆矩阵为其转置则：
-
-<img src="https://latex.codecogs.com/gif.latex?A=P\Lambda&space;P^{T}" title="A=P\Lambda P^{T}" />
-
+其中<img src="https://latex.codecogs.com/gif.latex?P" title="P" />为特征矩阵，<img src="https://latex.codecogs.com/gif.latex?\Lambda" title="\Lambda" />为特征值矩阵。
 
 ## 数学推导
 正交对角化推导如下：
@@ -53,14 +51,12 @@ SVD分解即奇异值分解， 可以从特征值分解推导而来。先理解�
 
 <img src="https://latex.codecogs.com/gif.latex?A=(\alpha_{1},\alpha_{2},...,\alpha_{n})&space;\begin{bmatrix}&space;\lambda_{1}&&space;&&space;&&space;\\&space;&&space;\lambda_{2}&&space;&&space;\\&space;&&space;&&space;...&&space;\\&space;&&space;&&space;&\lambda_{n}&space;\end{bmatrix}&space;(\alpha_{1},\alpha_{2},...,\alpha_{n})^{-1}" title="A=(\alpha_{1},\alpha_{2},...,\alpha_{n}) \begin{bmatrix} \lambda_{1}& & & \\ & \lambda_{2}& & \\ & & ...& \\ & & &\lambda_{n} \end{bmatrix} (\alpha_{1},\alpha_{2},...,\alpha_{n})^{-1}" />
 
-<img src="https://latex.codecogs.com/gif.latex?A=(\alpha_{1},\alpha_{2},...,\alpha_{n})&space;\begin{bmatrix}&space;\lambda_{1}&&space;&&space;&&space;\\&space;&&space;\lambda_{2}&&space;&&space;\\&space;&&space;&&space;...&&space;\\&space;&&space;&&space;&\lambda_{n}&space;\end{bmatrix}&space;(\alpha_{1},\alpha_{2},...,\alpha_{n})^{T}" title="A=(\alpha_{1},\alpha_{2},...,\alpha_{n}) \begin{bmatrix} \lambda_{1}& & & \\ & \lambda_{2}& & \\ & & ...& \\ & & &\lambda_{n} \end{bmatrix} (\alpha_{1},\alpha_{2},...,\alpha_{n})^{T}" />
-
 ## 几何意义
-对任意一个向量<img src="https://latex.codecogs.com/gif.latex?\beta" title="\beta" />施加矩阵A变换，相当于连续施加三个变换:<img src="https://latex.codecogs.com/gif.latex?P^{T}" title="P^{T}" /> -> <img src="https://latex.codecogs.com/gif.latex?\Lambda" title="\Lambda" /> -> <img src="https://latex.codecogs.com/gif.latex?P" title="P" /> :
+对任意一个向量<img src="https://latex.codecogs.com/gif.latex?\beta" title="\beta" />施加矩阵A变换，相当于连续施加三个变换:<img src="https://latex.codecogs.com/gif.latex?P^{-1}" title="P^{-1}" /> -> <img src="https://latex.codecogs.com/gif.latex?\Lambda" title="\Lambda" /> -> <img src="https://latex.codecogs.com/gif.latex?P" title="P" /> :
 
-<img src="https://latex.codecogs.com/gif.latex?A\beta=P\Lambda&space;P^{T}\beta" title="A\beta=P\Lambda P^{T}\beta" />
+<img src="https://latex.codecogs.com/gif.latex?A\beta=P\Lambda&space;P^{-1}\beta" title="A\beta=P\Lambda P^{-1}\beta" />
 
-<img src="https://latex.codecogs.com/gif.latex?P" title="P" />和<img src="https://latex.codecogs.com/gif.latex?P^_{T}" title="P^_{T}" />为正交矩阵，只有旋转效果,且它们互为反向旋转；<img src="https://latex.codecogs.com/gif.latex?\Lambda" title="\Lambda" />为对角矩阵，只有拉伸效果。所以改变换为:
+<img src="https://latex.codecogs.com/gif.latex?P" title="P" />和<img src="https://latex.codecogs.com/gif.latex?P^{-1}" title="P^{-1}" />为正交矩阵，只有旋转效果,且它们互为反向旋转；<img src="https://latex.codecogs.com/gif.latex?\Lambda" title="\Lambda" />为对角矩阵，只有拉伸效果。所以改变换为:
 
 旋转 -> 拉伸 -> 转回来 
 
