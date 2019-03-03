@@ -9,9 +9,16 @@ SVD分解即奇异值分解， 可以从特征值分解推导而来。先理解�
 
 <img src="https://github.com/DorianZi/algorithm_explained/raw/master/res/pic1.png">
 
-以<font size=4>基变换</font>来理解，原基为<img src="https://latex.codecogs.com/gif.latex?\binom{1}{0}" title="\binom{1}{0}" />和<img src="https://latex.codecogs.com/gif.latex?\binom{0}{1}" title="\binom{0}{1}" />，矩阵<img src="https://latex.codecogs.com/gif.latex?\begin{bmatrix}&space;3&&space;1\\&space;0&2&space;\end{bmatrix}" title="\begin{bmatrix} 3& 1\\ 0&2 \end{bmatrix}" />实际上是将原基变换为新基<img src="https://latex.codecogs.com/gif.latex?\binom{3}{0}" title="\binom{3}{0}" />和<img src="https://latex.codecogs.com/gif.latex?\binom{2}{1}" title="\binom{2}{1}" />
+以<font size=4>基变换</font>来理解。我们先构建一个“绝对”坐标系（如下图）。为了便于计算，设置原基为<img src="https://latex.codecogs.com/gif.latex?\binom{1}{0}" title="\binom{1}{0}" />和<img src="https://latex.codecogs.com/gif.latex?\binom{0}{1}" title="\binom{0}{1}" />，正好与“绝对”坐标系重叠。
 
-以点(1,1)为例子， 它在原基下的坐标为(1,1)，变换后它在新基下的坐标仍然为（1,1）：
+通过矩阵<img src="https://latex.codecogs.com/gif.latex?\begin{bmatrix}&space;3&&space;1\\&space;0&2&space;\end{bmatrix}" title="\begin{bmatrix} 3& 1\\ 0&2 \end{bmatrix}" />换基，可直接计算得到实际上是将原基变换为新基<img src="https://latex.codecogs.com/gif.latex?\binom{3}{0}" title="\binom{3}{0}" />和<img src="https://latex.codecogs.com/gif.latex?\binom{1}{2}" title="\binom{1}{2}" />：
+
+<img src="https://latex.codecogs.com/gif.latex?\begin{bmatrix}&space;3&space;&&space;1\\&space;0&space;&&space;2&space;\end{bmatrix}\begin{bmatrix}&space;1\\&space;0&space;\end{bmatrix}=\begin{bmatrix}&space;3\\&space;0&space;\end{bmatrix}" title="\begin{bmatrix} 3 & 1\\ 0 & 2 \end{bmatrix}\begin{bmatrix} 1\\ 0 \end{bmatrix}=\begin{bmatrix} 3\\ 0 \end{bmatrix}" />
+
+<img src="https://latex.codecogs.com/gif.latex?\begin{bmatrix}&space;3&space;&&space;1\\&space;0&space;&&space;2&space;\end{bmatrix}\begin{bmatrix}&space;0\\&space;1&space;\end{bmatrix}=\begin{bmatrix}&space;1\\&space;2&space;\end{bmatrix}" title="\begin{bmatrix} 3 & 1\\ 0 & 2 \end{bmatrix}\begin{bmatrix} 0\\ 1 \end{bmatrix}=\begin{bmatrix} 1\\ 2 \end{bmatrix}" />
+
+换基不影响坐标值，所以原基下的坐标(1,1)，变换后在新基下的坐标也是(1,1），而在“绝对”坐标系中坐标为(4,2)
+
 <img src="https://latex.codecogs.com/gif.latex?\begin{bmatrix}&space;3&space;&&space;1\\&space;0&space;&&space;2&space;\end{bmatrix}\begin{bmatrix}&space;1\\&space;1&space;\end{bmatrix}=\begin{bmatrix}&space;4\\&space;2&space;\end{bmatrix}" title="\begin{bmatrix} 3 & 1\\ 0 & 2 \end{bmatrix}\begin{bmatrix} 1\\ 1 \end{bmatrix}=\begin{bmatrix} 4\\ 2 \end{bmatrix}" />
 
 <img src="https://github.com/DorianZi/algorithm_explained/raw/master/res/pic_3.png">
@@ -48,9 +55,10 @@ SVD分解即奇异值分解， 可以从特征值分解推导而来。先理解�
 <img src="https://latex.codecogs.com/gif.latex?A\beta=P\Lambda&space;P^{T}\beta" title="A\beta=P\Lambda P^{T}\beta" />
 
 <img src="https://latex.codecogs.com/gif.latex?P" title="P" />和<img src="https://latex.codecogs.com/gif.latex?P^_{T}" title="P^_{T}" />为正交矩阵，只有旋转效果,且它们互为反向旋转；<img src="https://latex.codecogs.com/gif.latex?\Lambda" title="\Lambda" />为对角矩阵，只有拉伸效果。所以改变换为:
+
 旋转 -> 拉伸 -> 转回来 
 
 
 
-#参考
+# 参考
 https://www.bilibili.com/video/av6540378/
