@@ -5,22 +5,16 @@ SVD分解即奇异值分解， 可以从特征值分解推导而来。先理解�
 
 如果把矩阵A理解为线性变换，那么上式表示：可以找到向量<img src="https://latex.codecogs.com/gif.latex?\alpha" title="\alpha" />使得A只能对它进行<img src="https://latex.codecogs.com/gif.latex?\lambda" title="\lambda" />倍的拉伸。
 
-我们找到所有的满足条件的特征向量<img src="https://latex.codecogs.com/gif.latex?\alpha_{1},\alpha_{2},...,\alpha_{n}" title="\alpha_{1},\alpha_{2},...,\alpha_{n}" />和特征值<img src="https://latex.codecogs.com/gif.latex?\lambda_{1},\lambda_{2},...,\lambda_{n}" title="\lambda_{1},\lambda_{2},...,\lambda_{n}" />，则可以用它们来描述矩阵A。
+以<font size=4>空间拉伸</font>来理解，以下线性变换将正方形围住的空间变换成普通平行四边形。大部分向量都被施加了旋转和拉伸（<font color=#8B0000>褐色</font>），只有特征向量<img src="https://latex.codecogs.com/gif.latex?\alpha_{1},\alpha_{2}" title="\alpha_{1},\alpha_{2}" />（<font color=#008000>绿色</font>和<font color=#0000FF>蓝色</font>）所在方向的向量只进行了拉伸，且拉伸效果为相应的特征值<img src="https://latex.codecogs.com/gif.latex?\lambda_{1},\lambda_{2}" title="\lambda_{1},\lambda_{2}" />
 
-为什么可以用来描述矩阵A？怎么描述？这需要从特征向量和特征值的意义来理解。
+<img src="https://github.com/DorianZi/algorithm_explained/raw/master/res/pic1.png">
 
-矩阵所以代表的线性变换由旋转和拉伸构成。
-想象有一个力作用在向量上: 矩阵A的线性变换就相当于在特征向量<img src="https://latex.codecogs.com/gif.latex?\alpha" title="\alpha" />方向，使用大小为<img src="https://latex.codecogs.com/gif.latex?\lambda" title="\lambda" />的力进行拉伸
-下图v被旋转拉伸到v'
+以<font size=4>基变换</font>来理解，原基为<img src="https://latex.codecogs.com/gif.latex?\binom{1}{0}" title="\binom{1}{0}" />和<img src="https://latex.codecogs.com/gif.latex?\binom{0}{1}" title="\binom{0}{1}" />，矩阵<img src="https://latex.codecogs.com/gif.latex?\begin{bmatrix}&space;3&&space;1\\&space;0&2&space;\end{bmatrix}" title="\begin{bmatrix} 3& 1\\ 0&2 \end{bmatrix}" />实际上是将原基变换为新基<img src="https://latex.codecogs.com/gif.latex?\binom{3}{0}" title="\binom{3}{0}" />和<img src="https://latex.codecogs.com/gif.latex?\binom{2}{1}" title="\binom{2}{1}" />
 
-<img src="https://github.com/DorianZi/algorithm_explained/blob/master/res/pic1.png?raw=true">
+以点(1,1)为例子， 它在原基下的坐标为(1,1)，变换后它在新基下的坐标仍然为（1,1）：
+<img src="https://latex.codecogs.com/gif.latex?\begin{bmatrix}&space;3&space;&&space;1\\&space;0&space;&&space;2&space;\end{bmatrix}\begin{bmatrix}&space;1\\&space;1&space;\end{bmatrix}=\begin{bmatrix}&space;4\\&space;2&space;\end{bmatrix}" title="\begin{bmatrix} 3 & 1\\ 0 & 2 \end{bmatrix}\begin{bmatrix} 1\\ 1 \end{bmatrix}=\begin{bmatrix} 4\\ 2 \end{bmatrix}" />
 
-下图，由于v和特征向量<img src="https://latex.codecogs.com/gif.latex?\alpha" title="\alpha" />同向，则无旋转，长度为拉伸到<img src="https://latex.codecogs.com/gif.latex?\lambda" title="\lambda" />倍
-
-<img src="https://github.com/DorianZi/algorithm_explained/raw/master/res/pic2.png">
-
-所以，特征向量代表线性变换的方向，特征值代表该方向上的拉伸效果。如果有多个特征向量则有多个变换方向，这时候特征值可以理解为权重，权重越大的越强势。
-
+<img src="https://github.com/DorianZi/algorithm_explained/raw/master/res/pic_3.png">
 
 # 矩阵对角化
 将矩阵对角化为正交矩阵<img src="https://latex.codecogs.com/gif.latex?P" title="P" />和对角矩阵<img src="https://latex.codecogs.com/gif.latex?\Lambda" title="\Lambda" />的乘积：
@@ -53,7 +47,10 @@ SVD分解即奇异值分解， 可以从特征值分解推导而来。先理解�
 
 <img src="https://latex.codecogs.com/gif.latex?A\beta=P\Lambda&space;P^{T}\beta" title="A\beta=P\Lambda P^{T}\beta" />
 
-<img src="https://latex.codecogs.com/gif.latex?P" title="P" />和<img src="https://latex.codecogs.com/gif.latex?P^_{T}" title="P^_{T}" />为正交矩阵，只有旋转效果,且它们互为反向旋转；<img src="https://latex.codecogs.com/gif.latex?\Lambda" title="\Lambda" />为对角矩阵，只有拉伸效果。所以该变换为:
-
+<img src="https://latex.codecogs.com/gif.latex?P" title="P" />和<img src="https://latex.codecogs.com/gif.latex?P^_{T}" title="P^_{T}" />为正交矩阵，只有旋转效果,且它们互为反向旋转；<img src="https://latex.codecogs.com/gif.latex?\Lambda" title="\Lambda" />为对角矩阵，只有拉伸效果。所以改变换为:
 旋转 -> 拉伸 -> 转回来 
 
+
+
+#参考
+https://www.bilibili.com/video/av6540378/
