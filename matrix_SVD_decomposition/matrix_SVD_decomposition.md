@@ -30,14 +30,14 @@ SVD分解即奇异值分解， 可以从特征值分解推导而来。先理解�
 <img src="https://github.com/DorianZi/algorithm_explained/raw/master/res/pic4.png">
 
 # 矩阵对角化
-将矩阵对角化为正交矩阵<img src="https://latex.codecogs.com/gif.latex?P" title="P" />和对角矩阵<img src="https://latex.codecogs.com/gif.latex?\Lambda" title="\Lambda" />的乘积：
+将矩阵对角化为特征向量为列的矩阵<img src="https://latex.codecogs.com/gif.latex?P" title="P" />和对角矩阵<img src="https://latex.codecogs.com/gif.latex?\Lambda" title="\Lambda" />的乘积：
 
 <img src="https://latex.codecogs.com/gif.latex?A=P\Lambda&space;P^{-1}" title="A=P\Lambda P^{-1}" />
 
-其中<img src="https://latex.codecogs.com/gif.latex?P" title="P" />为特征矩阵，<img src="https://latex.codecogs.com/gif.latex?\Lambda" title="\Lambda" />为特征值矩阵。
+其中<img src="https://latex.codecogs.com/gif.latex?P" title="P" />的列向量为特征向量，<img src="https://latex.codecogs.com/gif.latex?\Lambda" title="\Lambda" />为特征值矩阵。
 
 ## 数学推导
-正交对角化推导如下：
+对角化推导如下：
 
 根据特征值/特征向量定义：
 
@@ -51,12 +51,19 @@ SVD分解即奇异值分解， 可以从特征值分解推导而来。先理解�
 
 <img src="https://latex.codecogs.com/gif.latex?A=(\alpha_{1},\alpha_{2},...,\alpha_{n})&space;\begin{bmatrix}&space;\lambda_{1}&&space;&&space;&&space;\\&space;&&space;\lambda_{2}&&space;&&space;\\&space;&&space;&&space;...&&space;\\&space;&&space;&&space;&\lambda_{n}&space;\end{bmatrix}&space;(\alpha_{1},\alpha_{2},...,\alpha_{n})^{-1}" title="A=(\alpha_{1},\alpha_{2},...,\alpha_{n}) \begin{bmatrix} \lambda_{1}& & & \\ & \lambda_{2}& & \\ & & ...& \\ & & &\lambda_{n} \end{bmatrix} (\alpha_{1},\alpha_{2},...,\alpha_{n})^{-1}" />
 
-## 几何意义
-对任意一个向量<img src="https://latex.codecogs.com/gif.latex?\beta" title="\beta" />施加矩阵A变换，相当于连续施加三个变换:<img src="https://latex.codecogs.com/gif.latex?P^{-1}" title="P^{-1}" /> -> <img src="https://latex.codecogs.com/gif.latex?\Lambda" title="\Lambda" /> -> <img src="https://latex.codecogs.com/gif.latex?P" title="P" /> :
+## 几何推导
+前提知识：从新的一组基<img src="https://latex.codecogs.com/gif.latex?(\alpha_{1},\alpha_{2},..,\alpha_{n})" title="(\alpha_{1},\alpha_{2},..,\alpha_{n})" />的角度来看待一个线性变换A为：<img src="https://latex.codecogs.com/gif.latex?(\alpha_{1},\alpha_{2},...,\alpha_{n})^{-1}A(\alpha_{1},\alpha_{2},...,\alpha_{n})" title="(\alpha_{1},\alpha_{2},...,\alpha_{n})^{-1}A(\alpha_{1},\alpha_{2},...,\alpha_{n})" />
+
+那么基于这个前提知识，我们抽取出特征向量组成一组新基<img src="https://latex.codecogs.com/gif.latex?(\alpha_{1},\alpha_{2},..,\alpha_{n})" title="(\alpha_{1},\alpha_{2},..,\alpha_{n})" />, 从这组新基的角度来看待线性变换A为等式左边；等式右边一定为对角矩阵，且对角元素值为特征值。这是因为从特征向量的角度看来，A只是完成了拉伸，而没有旋转：
+
+<img src="https://latex.codecogs.com/gif.latex?(\alpha_{1},\alpha_{2},...,\alpha_{n})^{-1}A(\alpha_{1},\alpha_{2},...,\alpha_{n})=\begin{bmatrix}&space;\lambda_{1}&space;&&space;&&space;&&space;\\&space;&&space;\lambda_{2}&space;&&space;&&space;\\&space;&&space;&&space;...&&space;\\&space;&&space;&&space;&&space;\lambda_{n}&space;\end{bmatrix}" title="(\alpha_{1},\alpha_{2},...,\alpha_{n})^{-1}A(\alpha_{1},\alpha_{2},...,\alpha_{n})=\begin{bmatrix} \lambda_{1} & & & \\ & \lambda_{2} & & \\ & & ...& \\ & & & \lambda_{n} \end{bmatrix}" />
+
+另外，从过程上理解，对任意一个向量<img src="https://latex.codecogs.com/gif.latex?\beta" title="\beta" />施加矩阵A变换，相当于连续施加三个变换:<img src="https://latex.codecogs.com/gif.latex?P^{-1}" title="P^{-1}" /> -> <img src="https://latex.codecogs.com/gif.latex?\Lambda" title="\Lambda" /> -> <img src="https://latex.codecogs.com/gif.latex?P" title="P" /> :
 
 <img src="https://latex.codecogs.com/gif.latex?A\beta=P\Lambda&space;P^{-1}\beta" title="A\beta=P\Lambda P^{-1}\beta" />
 
-<img src="https://latex.codecogs.com/gif.latex?P" title="P" />和<img src="https://latex.codecogs.com/gif.latex?P^{-1}" title="P^{-1}" />为正交矩阵，只有旋转效果,且它们互为反向旋转；<img src="https://latex.codecogs.com/gif.latex?\Lambda" title="\Lambda" />为对角矩阵，只有拉伸效果。所以改变换为:
+
+特殊情况下，如果<img src="https://latex.codecogs.com/gif.latex?P" title="P" />和<img src="https://latex.codecogs.com/gif.latex?P^{-1}" title="P^{-1}" />为正交矩阵，则只有旋转效果,且它们互为反向旋转；<img src="https://latex.codecogs.com/gif.latex?\Lambda" title="\Lambda" />为对角矩阵，只有拉伸效果。所以改变换为:
 
 旋转 -> 拉伸 -> 转回来 
 
