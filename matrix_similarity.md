@@ -1,7 +1,10 @@
 # 相似矩阵
 
 相似矩阵表达的是：同一个线性变换在不同基下的表达。
+下面的推导中，A矩阵和B矩阵相似，也就是说他们是同一个线性变换在不同基下的表达
 
+
+## 推导
 见下图
 
 
@@ -25,7 +28,7 @@
 
 <img src="https://latex.codecogs.com/gif.latex?P^{-1}(\underset{i}{\rightarrow},\underset{j}{\rightarrow})=(\underset{i'}{\rightarrow},\underset{j'}{\rightarrow})" title="P^{-1}(\underset{i}{\rightarrow},\underset{j}{\rightarrow})=(\underset{i'}{\rightarrow},\underset{j'}{\rightarrow})" /> ①
 
-以及
+同时，线性变换之后得到的向量也应该满足基之间的转换关系：
 
 <img src="https://latex.codecogs.com/gif.latex?P^{-1}A(\underset{i}{\rightarrow},\underset{j}{\rightarrow})\underset{\alpha}{\rightarrow}=B(\underset{i'}{\rightarrow},\underset{j'}{\rightarrow})\underset{\alpha}{\rightarrow}" title="P^{-1}A(\underset{i}{\rightarrow},\underset{i}{\rightarrow})\underset{\alpha}{\rightarrow}=B(\underset{i'}{\rightarrow},\underset{j'}{\rightarrow})\underset{\alpha}{\rightarrow}" />  ②
 
