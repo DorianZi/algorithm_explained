@@ -22,3 +22,7 @@ PCA即Principal Component Analysis, 主成分分析。 主要思想是数据降�
 
 至此，实现了降维。
 
+更多的数据点
+
+<img src="https://pic3.zhimg.com/v2-89d7327bd92119c2c99357a423d4da26_b.gif">
+
