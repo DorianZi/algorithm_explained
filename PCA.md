@@ -1,7 +1,8 @@
 # PCA主成分分析
 
 ## 降维思想
-PCA即Principal Component Analysis, 主成分分析。 主要思想是数据降维
+PCA即Principal Component Analysis, 主成分分析。主要思想是数据降维。
+
 降维的办法常常是利用现有的n维数据的统计特征，创造更少的m维特征来表示该组数据，实现降维。
 
 有三个数据点在正交基<img src="https://latex.codecogs.com/gif.latex?(\underset{i}{\rightarrow},\underset{j}{\rightarrow})" title="(\underset{i}{\rightarrow},\underset{j}{\rightarrow})" />下表示为<img src="https://latex.codecogs.com/gif.latex?(x_{1},y_{1}),(x_{2},y_{2}),(x_{3},y_{3})" title="(x_{1},y_{1}),(x_{2},y_{2}),(x_{3},y_{3})" />
@@ -63,9 +64,25 @@ PCA即Principal Component Analysis, 主成分分析。 主要思想是数据降�
 
 <img src="https://latex.codecogs.com/gif.latex?\begin{cases}&space;\frac{\partial&space;f}{\partial&space;v}=\frac{\partial&space;(v^{T}Cv)}{\partial&space;v}-\lambda\frac{\partial&space;(v^{T}v)}{\partial&space;v}=2Cv-2\lambda&space;v=0\\&space;\frac{\partial&space;f}{\partial&space;\lambda}=v^{T}v-1=0&space;\end{cases}" title="\begin{cases} \frac{\partial f}{\partial v}=\frac{\partial (v^{T}Cv)}{\partial v}-\lambda\frac{\partial (v^{T}v)}{\partial v}=2Cv-2\lambda v=0\\ \frac{\partial f}{\partial \lambda}=v^{T}v-1=0 \end{cases}" />
 
-顺便提一下<img src="https://latex.codecogs.com/gif.latex?\frac{\partial&space;(v^{T}Cv)}{v}=2Cv" title="\frac{\partial (v^{T}Cv)}{v}=2Cv" />的求导过程，利用了协方差矩阵C为对称实矩阵的特性
+顺便提一下<img src="https://latex.codecogs.com/gif.latex?\frac{\partial&space;(v^{T}Cv)}{v}=2Cv" title="\frac{\partial (v^{T}Cv)}{v}=2Cv" />的求导过程，利用了协方差矩阵C为对称实矩阵的特性，不然你得不到<img src="https://latex.codecogs.com/gif.latex?2Cv" title="2Cv" />这么完美的结果的。
 
 同时<img src="https://latex.codecogs.com/gif.latex?2Cv-2\lambda&space;v=0&space;=>&space;Cv=\lambda&space;v" title="2Cv-2\lambda v=0 => Cv=\lambda v" />，恰好是特征向量和特征值的定义！
 
 于是，上面的极值条件转换为：
-### 求协方差矩阵C的单位特征向量
+##### 求协方差矩阵C的单位特征向量
+
+不过，特征向量和特征值那么多，哪一个才是使得方差最大呢？
+
+<img src="https://latex.codecogs.com/gif.latex?\sigma&space;^{2}=v^{T}Cv=v^{T}\lambda&space;v=\lambda&space;v^{T}v=\lambda" title="\sigma ^{2}=v^{T}Cv=v^{T}\lambda v=\lambda v^{T}v=\lambda" />
+
+所以，最大特征值对应的特征向量使得方差最大，也就是使得数据降维之后最分散。
+
+不过在实际PCA应用中，一般不会直接降维到只有一个特征向量。降维是为了在容许丢失部分信息的前提下简化数据复杂度，不是为了简化数据复杂度而去一味地降维。于是，我们会从大到小，选则m个最大的特征值对应的特征向量，组成新的m组维度，来表示原始数据。在PCA里称这是m个主元。
+
+## 协方差矩阵
+协方差矩阵为实对称矩阵，则可以对角化为：
+
+<img src="https://latex.codecogs.com/gif.latex?C=U\Lambda&space;U^{T}" title="C=U\Lambda U^{T}" />
+
+其中<img src="https://latex.codecogs.com/gif.latex?U" title="U" />为特征向量组成的正交矩阵，<img src="https://latex.codecogs.com/gif.latex?\Lambda" title="\Lambda" />为对应的特征值独角矩阵
+
