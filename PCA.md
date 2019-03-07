@@ -43,4 +43,29 @@ PCA即Principal Component Analysis, 主成分分析。 主要思想是数据降�
 
 <img src="https://latex.codecogs.com/gif.latex?\sigma&space;^{2}=\sum_{i=1}^{n}d_{i}^{2}=\sum_{i=1}^{n}(\frac{x_{i}^{T}v}{|v|})^{2}" title="\sigma ^{2}=\sum_{i=1}^{n}d_{i}^{2}=\sum_{i=1}^{n}(\frac{x_{i}^{T}v}{|v|})^{2}" />
 
-<img src="https://latex.codecogs.com/gif.latex?\sum_{i=1}^{n}(\frac{x_{i}^{T}v}{|v|})^{2}=\sum_{i=1}^{n}(\frac{x_{i}^{T}vx_{i}^{T}v}{v^{T}v})=\sum_{i=1}^{n}v^{T}x_{i}x_{i}^{T}v" title="\sum_{i=1}^{n}(\frac{x_{i}^{T}v}{|v|})^{2}=\sum_{i=1}^{n}(\frac{x_{i}^{T}vx_{i}^{T}v}{v^{T}v})=\sum_{i=1}^{n}v^{T}x_{i}x_{i}^{T}v" />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="https://latex.codecogs.com/gif.latex?=\sum_{i=1}^{n}(\frac{x_{i}^{T}vx_{i}^{T}v}{v^{T}v})" title="=\sum_{i=1}^{n}(\frac{x_{i}^{T}vx_{i}^{T}v}{v^{T}v})" />
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="https://latex.codecogs.com/gif.latex?=\sum_{i=1}^{n}v^{T}x_{i}x_{i}^{T}v" title="=\sum_{i=1}^{n}v^{T}x_{i}x_{i}^{T}v" />
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="https://latex.codecogs.com/gif.latex?=v^{T}(\sum_{i=1}^{n}x_{i}x_{i}^{T})v" title="=v^{T}(\sum_{i=1}^{n}x_{i}x_{i}^{T})v" />
+
+设<img src="https://latex.codecogs.com/gif.latex?C=\sum_{i=1}^{n}x_{i}x_{i}^{T}" title="C=\sum_{i=1}^{n}x_{i}x_{i}^{T}" />， 则C为协方差矩阵。则：
+
+<img src="https://latex.codecogs.com/gif.latex?\sigma&space;^{2}=v^{T}Cv" title="\sigma ^{2}=v^{T}Cv" />
+
+所以接下来我们要求取一个单位向量<img src="https://latex.codecogs.com/gif.latex?v" title="v" />（即约束条件：<img src="https://latex.codecogs.com/gif.latex?v^{T}v=1" title="v^{T}v=1" />）使得方差<img src="https://latex.codecogs.com/gif.latex?v^{T}Cv" title="v^{T}Cv" />最大
+
+采用拉格朗日乘子法,即转换为求如下函数的极值：
+
+<img src="https://latex.codecogs.com/gif.latex?f(v,\lambda)=v^{T}Cv-\lambda(v^{T}v-1)" title="f(v,\lambda)=v^{T}Cv-\lambda(v^{T}v-1)" />
+
+求极值，则要求偏导数为0：
+
+<img src="https://latex.codecogs.com/gif.latex?\begin{cases}&space;\frac{\partial&space;f}{\partial&space;v}=\frac{\partial&space;(v^{T}Cv)}{\partial&space;v}-\lambda\frac{\partial&space;(v^{T}v)}{\partial&space;v}=2Cv-2\lambda&space;v=0\\&space;\frac{\partial&space;f}{\partial&space;\lambda}=v^{T}v-1=0&space;\end{cases}" title="\begin{cases} \frac{\partial f}{\partial v}=\frac{\partial (v^{T}Cv)}{\partial v}-\lambda\frac{\partial (v^{T}v)}{\partial v}=2Cv-2\lambda v=0\\ \frac{\partial f}{\partial \lambda}=v^{T}v-1=0 \end{cases}" />
+
+顺便提一下<img src="https://latex.codecogs.com/gif.latex?\frac{\partial&space;(v^{T}Cv)}{v}=2Cv" title="\frac{\partial (v^{T}Cv)}{v}=2Cv" />的求导过程，利用了协方差矩阵C为对称实矩阵的特性
+
+同时<img src="https://latex.codecogs.com/gif.latex?2Cv-2\lambda&space;v=0&space;=>&space;Cv=\lambda&space;v" title="2Cv-2\lambda v=0 => Cv=\lambda v" />，恰好是特征向量和特征值的定义！
+
+于是，上面的极值条件转换为：
+### 求协方差矩阵C的单位特征向量
