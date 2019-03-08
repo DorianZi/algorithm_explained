@@ -79,10 +79,21 @@ PCA即Principal Component Analysis, 主成分分析。主要思想是数据降�
 
 不过在实际PCA应用中，一般不会直接降维到只有一个特征向量。降维是为了在容许丢失部分信息的前提下简化数据复杂度，不是为了简化数据复杂度而去一味地降维。于是，我们会从大到小，选则m个最大的特征值对应的特征向量，组成新的m组维度，来表示原始数据。在PCA里称这是m个主元。
 
-## 协方差矩阵
-协方差矩阵为实对称矩阵，则可以对角化为：
+## 协方差矩阵的意义
 
-<img src="https://latex.codecogs.com/gif.latex?C=U\Lambda&space;U^{T}" title="C=U\Lambda U^{T}" />
 
-其中<img src="https://latex.codecogs.com/gif.latex?U" title="U" />为特征向量组成的正交矩阵，<img src="https://latex.codecogs.com/gif.latex?\Lambda" title="\Lambda" />为对应的特征值独角矩阵
+以二维为例，在数据图形中理解协方差矩阵：
+<img src="https://github.com/DorianZi/algorithm_explained/blob/master/res/eigenvectors.png?raw=true">
+<img src="https://github.com/DorianZi/algorithm_explained/blob/master/res/eigenvectors_covariance.png?raw=true">
+
+协方差矩阵对角线上为x方向和方差，它表示x轴方向和y轴方向数据的散度。非对角线上为x,y方向相关度：0表示无关，数据在x轴上延伸，在y轴上无变化；正数表示正相关，数据在x轴正向延伸，在y轴也正向延伸，且越大表示相关性越大；负数表示负相关，数据在x轴正向延伸，就在y轴负向延伸。
+
+在特征向量方向重新表述上面的散度关系，同时利用上面的结论<img src="https://latex.codecogs.com/gif.latex?\sigma&space;^{2}=\lambda" title="\sigma ^{2}==\lambda" />，我们得到以下结论：特征向量方向的数据方差大小为对应的特征值；两个特征向量方向数据的协方差为0
+
+我们继续在数学上解释以上结论——
+
+首先找到协方差矩阵的特征向量和特征值，也就是把原矩阵对角化为： <img src="https://latex.codecogs.com/gif.latex?C=U\Lambda&space;U^{T}" title="C=U\Lambda U^{T}" />  （<img src="https://latex.codecogs.com/gif.latex?U" title="U" />为特征向量组成的正交矩阵，<img src="https://latex.codecogs.com/gif.latex?\Lambda" title="\Lambda" />为对应的特征值组成的对角矩阵）。接下来我们从相似矩阵的意义去理解，即：从特征向量组成的新基的视角看矩阵C，是<img src="https://latex.codecogs.com/gif.latex?\Lambda" title="\Lambda" />的样子。所以<img src="https://latex.codecogs.com/gif.latex?\Lambda" title="\Lambda" />是特征向量视角下的新的协方差矩阵。 它的对角线元素表示在特征向量方向的数据散度（方差），非对角线元素表示两个特征向量方向上数据相关性，在这里它为0，说明不相关。
+
+这个结论也正好反过来说明了，我们用找到的特征向量作为新的主元，足以表示数据的特征。接下来要做的当然就是选取最大的m个维度进行降维了。
+
 
