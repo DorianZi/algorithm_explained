@@ -107,6 +107,20 @@ SVD = Singular Value Decomposition 即奇异值分解。特征值可以理解为
 
 <img src="https://latex.codecogs.com/gif.latex?\lambda_{1}=\frac{Av_{1}}{u_{1}},&space;\&space;\&space;\&space;\lambda_{2}=\frac{Av_{2}}{u_{2}}&space;\&space;\&space;\&space;...&space;\&space;\&space;\&space;\&space;\&space;\lambda_{n}=\frac{Av_{n}}{u_{n}}" title="\lambda_{1}=\frac{Av_{1}}{u_{1}}, \ \ \ \lambda_{2}=\frac{Av_{2}}{u_{2}} \ \ \ ... \ \ \ \ \ \lambda_{n}=\frac{Av_{n}}{u_{n}}" />
 
+另外一种推导方式——
+
+在最开始的奇异值分解推导中，我们已经通过<img src="https://latex.codecogs.com/gif.latex?\Lambda&space;_{1}" title="\Lambda _{1}" />和<img src="https://latex.codecogs.com/gif.latex?\Lambda&space;_{2}" title="\Lambda _{2}" />来表示<img src="https://latex.codecogs.com/gif.latex?AA^{T}" title="AA^{T}" />和<img src="https://latex.codecogs.com/gif.latex?A^{T}A" title="A^{T}A" />，现在我们通过<img src="https://latex.codecogs.com/gif.latex?\sum" title="\sum" />来表示<img src="https://latex.codecogs.com/gif.latex?AA^{T}" title="AA^{T}" />和<img src="https://latex.codecogs.com/gif.latex?A^{T}A" title="A^{T}A" />。这样我们就能知道<img src="https://latex.codecogs.com/gif.latex?\Lambda&space;_{1},\Lambda&space;_{2}" title="\Lambda _{1},\Lambda _{2}" />和<img src="https://latex.codecogs.com/gif.latex?\sum" title="\sum" />的关系
+
+<img src="https://latex.codecogs.com/gif.latex?A=U\sum&space;V^{T}&space;\&space;\&space;\&space;\&space;=&space;>&space;\&space;\&space;\&space;A^{T}&space;=V(\sum)^{T}U^{T}" title="A=U\sum V^{T} \ \ \ \ = > \ \ \ A^{T} =V(\sum)^{T}U^{T}" />
+
+<img src="https://latex.codecogs.com/gif.latex?AA^{T}=U\sum&space;V^{T}V(\sum)^{T}U^{T}&space;=U&space;\underset{m\times&space;m}{\begin{bmatrix}&space;\lambda_{1}^{2}&&space;&&space;&&space;&&space;&&space;&0&space;\\&space;&&space;\lambda_{1}^{2}&&space;&&space;&&space;&&space;&&space;\\&space;&&space;&&space;...&&space;&&space;&&space;&&space;\\&space;&&space;&&space;&&space;\lambda_{n}^{2}&&space;&&space;&\\&space;&&space;&&space;&&space;&&space;0&&space;&\\&space;&&space;&&space;&&space;&&space;&&space;...&\\&space;0&space;&&space;&&space;&&space;&&space;&&space;&0\\&space;\end{bmatrix}}U^{T}" />
+
+<img src="https://latex.codecogs.com/gif.latex?A^{T}A=V(\sum)^{T}U^{T}U\sum&space;V^{T}&space;=V&space;\underset{n\times&space;n}{\begin{bmatrix}&space;\lambda_{1}^{2}&&space;&&space;&&space;\\&space;&&space;\lambda_{1}^{2}&&space;&&space;\\&space;&&space;&&space;...&&space;\\&space;&&space;&&space;&&space;\lambda_{n}^{2}&space;\end{bmatrix}}V^{T}" />
+
+BTW，上面用到了<img src="https://latex.codecogs.com/gif.latex?U^{T}U=I,\&space;V^{T}V=I" title="U^{T}U=I,\ \ \ V^{T}V=I" />的条件。
+
+由此我们得到奇异值为特征值的开根。
+
 
 # 参考
 https://www.bilibili.com/video/av6540378/
