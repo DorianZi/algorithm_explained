@@ -68,6 +68,45 @@ SVD分解即奇异值分解， 可以从特征值分解推导而来。先理解�
 旋转 -> 拉伸 -> 转回来 
 
 
+## SVD奇异值分解
+SVD = Singular Value Decomposition 即奇异值分解。特征值可以理解为奇异值的一种特殊情况，即矩阵为方阵的情况。在矩阵非方阵的时候，我们将类似的分解称作奇异值分解
+
+我们有一个非方阵的维度为<img src="https://latex.codecogs.com/gif.latex?m\times&space;n(m<n)" title="m\times n(m<n)" />的矩阵<img src="https://latex.codecogs.com/gif.latex?\underset{m\times&space;n}{A}" title="\underset{m\times n}{A}" />，希望能够对角化。采用上面的特征矩阵分解方式是不可能了，但是我们可以利用<img src="https://latex.codecogs.com/gif.latex?A^{T}A" title="A^{T}A" />（<img src="https://latex.codecogs.com/gif.latex?AA^{T}" title="AA^{T}" />）为实对称方阵的特性来获得不同的特征矩阵分解：
+
+<img src="https://latex.codecogs.com/gif.latex?\underset{n\times&space;m}{A^{T}}\underset{m\times&space;n}{A}=\underset{n\times&space;n}{U}\underset{n\times&space;n}{\Lambda&space;_{1}}\underset{n\times&space;n}{U^{-1}}=\underset{n\times&space;n}{U}\underset{n\times&space;n}{\Lambda&space;_{1}}\underset{n\times&space;n}{U^{T}}">
+
+<img src="https://latex.codecogs.com/gif.latex?\underset{m\times&space;n}{A}\underset{n\times&space;m}{A^{T}}=\underset{m\times&space;m}{V}\underset{m\times&space;m}{\Lambda&space;_{2}}\underset{m\times&space;m}{V^{-1}}=\underset{m\times&space;m}{V}\underset{m\times&space;m}{\Lambda&space;_{2}}\underset{m\times&space;m}{V^{T}}">
+
+可以推得(推导过程TBD)：
+
+<img src="https://latex.codecogs.com/gif.latex?\underset{m\times&space;n}{A}=\underset{m\times&space;m}{U}\underset{m\times&space;n}{\sum}\underset{n\times&space;n}{V^{T}}">
+
+<img src="https://github.com/DorianZi/algorithm_explained/blob/master/res/SVD_graph.png?raw=true">
+
+
+### 奇异值求解推导
+接下来我们来求新的对角矩阵<img src="https://latex.codecogs.com/gif.latex?\underset{m\times&space;n}{\sum}" title="\underset{m\times n}{\sum}" />的对角元素，即奇异值<img src="https://latex.codecogs.com/gif.latex?\lambda_{1},\lambda_{2},...,\lambda_{n}" title="\lambda_{1},\lambda_{2},...,\lambda_{n}" />
+
+首先了解一下<img src="https://latex.codecogs.com/gif.latex?\underset{m\times&space;n}{\sum}" title="\underset{m\times n}{\sum}" />的形状：
+
+<img src="https://latex.codecogs.com/gif.latex?\underset{m\times&space;n}{\sum&space;}=&space;\underset{m\times&space;n}{\begin{bmatrix}&space;\lambda_{1}&&space;&&space;&&space;&&space;0\\&space;&&space;\lambda_{2}&&space;&&space;&&space;\\&space;&&space;&&space;...&&space;&&space;\\&space;&&space;&&space;&&space;&&space;\lambda_{n}\\&space;&&space;&&space;&&space;&&space;0\\&space;&&space;&&space;&&space;&&space;...\\&space;0&space;&&space;&&space;&&space;&&space;0\\&space;\end{bmatrix}&space;}" title="\underset{m\times n}{\sum }= \underset{m\times n}{\begin{bmatrix} \lambda_{1}& & & & 0\\ & \lambda_{2}& & & \\ & & ...& & \\ & & & & \lambda_{n}\\ & & & & 0\\ & & & & ...\\ 0 & & & & 0\\ \end{bmatrix} }" />
+
+开始推导：
+
+<img src="https://latex.codecogs.com/gif.latex?A=U\sum&space;V^{T}\&space;\&space;\&space;\&space;\&space;\&space;=>\&space;\&space;\&space;\&space;\&space;\&space;AV=U\sum&space;V^{T}V&space;\&space;\&space;\&space;\&space;\&space;\underset{=======>}{V^{T}V=I}&space;\&space;\&space;\&space;\&space;AV=U\sum" title="A=U\sum V^{T}\ \ \ \ \ \ =>\ \ \ \ \ \ AV=U\sum V^{T}V \ \ \ \ \ \underset{=======>}{V^{T}V=I} \ \ \ \ AV=U\sum" />
+
+<img src="https://latex.codecogs.com/gif.latex?AV=U\sum" title="AV=U\sum" /> 写成列向量的组合形式：
+
+<img src="https://latex.codecogs.com/gif.latex?A(v_{1},v_{2},...,v_{n})=(u_{1},u_{2},...,u_{n},...,u_{m})&space;\underset{m\times&space;n}{\begin{bmatrix}&space;\lambda_{1}&&space;&&space;&&space;&&space;0\\&space;&&space;\lambda_{2}&&space;&&space;&&space;\\&space;&&space;&&space;...&&space;&&space;\\&space;&&space;&&space;&&space;&&space;\lambda_{n}\\&space;&&space;&&space;&&space;&&space;0\\&space;&&space;&&space;&&space;&&space;...\\&space;0&space;&&space;&&space;&&space;&&space;0\\&space;\end{bmatrix}&space;}">
+
+=>
+
+<img src="https://latex.codecogs.com/gif.latex?(Av_{1},Av_{2},...,Av_{n})=(\lambda_{1}u_{1},\lambda_{1}u_{1},...,\lambda_{n}u_{n})" title="(Av_{1},Av_{2},...,Av_{n})=(\lambda_{1}u_{1},\lambda_{1}u_{1},...,\lambda_{n}u_{n})" />
+
+=>
+
+<img src="https://latex.codecogs.com/gif.latex?\lambda_{1}=\frac{Av_{1}}{u_{1}},&space;\&space;\&space;\&space;\lambda_{2}=\frac{Av_{2}}{u_{2}}&space;\&space;\&space;\&space;...&space;\&space;\&space;\&space;\&space;\&space;\lambda_{n}=\frac{Av_{n}}{u_{n}}" title="\lambda_{1}=\frac{Av_{1}}{u_{1}}, \ \ \ \lambda_{2}=\frac{Av_{2}}{u_{2}} \ \ \ ... \ \ \ \ \ \lambda_{n}=\frac{Av_{n}}{u_{n}}" />
+
 
 # 参考
 https://www.bilibili.com/video/av6540378/
