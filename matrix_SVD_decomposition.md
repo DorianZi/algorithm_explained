@@ -121,6 +121,24 @@ BTW，上面用到了<img src="https://latex.codecogs.com/gif.latex?U^{T}U=I,\&s
 
 由此我们得到奇异值为特征值的开根。
 
+### SVD分解的意义
+
+A可以被U和V表示，而其中的奇异值<img src="https://latex.codecogs.com/gif.latex?\lambda_{1},\lambda_{2},...,\lambda_{n}" title="\lambda_{1},\lambda_{2},...,\lambda_{n}" />分别为U的列向量和V的行向量的权重：
+
+<img src="https://latex.codecogs.com/gif.latex?\underset{m\times&space;n}{A}=\underset{m\times&space;m}{(u_{1},u_{2},...,u_{n},...,u_{m})}&space;\underset{m\times&space;n}{\begin{bmatrix}&space;\lambda_{1}&&space;&&space;&&space;0&space;\\&space;&&space;\lambda_{2}&&space;&&space;\\&space;&&space;&&space;...&&space;\\&space;&&space;&&space;&&space;\lambda_{n}\\&space;&&space;&&space;&&space;0\\&space;&&space;&&space;&&space;...\\&space;0&&space;&&space;&&space;0\\&space;\end{bmatrix}}&space;\underset{n\times&space;n}{\begin{pmatrix}&space;v^{T}_{1}\\&space;v^{T}_{2}\\&space;...\\&space;v^{T}_{n}&space;\end{pmatrix}&space;}" title="\underset{m\times n}{A}=\underset{m\times m}{(u_{1},u_{2},...,u_{n},...,u_{m})} \underset{m\times n}{\begin{bmatrix} \lambda_{1}& & & 0 \\ & \lambda_{2}& & \\ & & ...& \\ & & & \lambda_{n}\\ & & & 0\\ & & & ...\\ 0& & & 0\\ \end{bmatrix}} \underset{n\times n}{\begin{pmatrix} v^{T}_{1}\\ v^{T}_{2}\\ ...\\ v^{T}_{n} \end{pmatrix} }" />
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="https://latex.codecogs.com/gif.latex?=(u_{1}\lambda_{1},u_{2}\lambda_{2},...,u_{n}\lambda_{n})&space;\underset{n\times&space;n}{\begin{pmatrix}&space;v^{T}_{1}\\&space;v^{T}_{2}\\&space;...\\&space;v^{T}_{n}&space;\end{pmatrix}&space;}" title="=(u_{1}\lambda_{1},u_{2}\lambda_{2},...,u_{n}\lambda_{n}) \underset{n\times n}{\begin{pmatrix} v^{T}_{1}\\ v^{T}_{2}\\ ...\\ v^{T}_{n} \end{pmatrix} }" />
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="https://latex.codecogs.com/gif.latex?=\lambda_{1}u_{1}v^{T}_{1}&plus;\lambda_{2}u_{2}v^{T}_{2}&plus;...&plus;\lambda_{n}u_{n}v^{T}_{n}" title="=\lambda_{1}u_{1}v^{T}_{1}+\lambda_{2}u_{2}v^{T}_{2}+...+\lambda_{n}u_{n}v^{T}_{n}" />
+
+通常，前k大的奇异值就足以占了所以奇异值90%的比重，这种情况下，我们只需要选择前k个奇异值，对应地选择U的前k个列向量，还有V的前k个行向量，就可以近似表示出矩阵A:
+
+<img src="https://latex.codecogs.com/gif.latex?\underset{m\times&space;n}{\tilde{A}}=\underset{m\times&space;k}{(u_{1},u_{2},...,u_{k})}&space;\underset{k\times&space;k}{\begin{bmatrix}&space;\lambda_{1}&&space;&&space;&&space;0&space;\\&space;&&space;\lambda_{2}&&space;&&space;\\&space;&&space;&&space;...&&space;\\&space;&&space;&&space;&&space;\lambda_{k}\end{bmatrix}}&space;\underset{k\times&space;n}{\begin{pmatrix}&space;v^{T}_{1}\\&space;v^{T}_{2}\\&space;...\\&space;v^{T}_{k}&space;\end{pmatrix}&space;}">
+
+<img src="https://github.com/DorianZi/algorithm_explained/raw/master/res/svd_cut.png">
+
+这样一种降维思想在图像压缩，推荐系统里面有着非常广泛的应用。
+
 
 # 参考
 https://www.bilibili.com/video/av6540378/
