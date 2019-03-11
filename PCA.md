@@ -52,7 +52,7 @@ PCA即Principal Component Analysis, 主成分分析。主要思想是数据降�
 
 设<img src="https://latex.codecogs.com/gif.latex?C=\sum_{i=1}^{n}x_{i}x_{i}^{T}" title="C=\sum_{i=1}^{n}x_{i}x_{i}^{T}" />， 则C为协方差矩阵。为什么呢？推导如下——
 
-对于一个有m个n维样本的样本集，我们把它写成行向量形式，即每行为一个样本，每一列为一个维度，且维度分别为D1,D2,...,Dn：
+对于一个有m个n维样本的样本集，我们把它写成行向量形式（只是为了方便观察，写成列向量也可以。并不影响协方差矩阵的shape），即每行为一个样本，每一列为一个维度，且维度分别为D1,D2,...,Dn：
 
 <img src="https://latex.codecogs.com/gif.latex?\underset{m\times&space;n}{Data}=&space;\overset{D1&space;\&space;\&space;\&space;D2&space;\&space;\&space;\&space;\&space;...&space;\&space;\&space;\&space;Dn}{&space;\begin{bmatrix}&space;x_{11}&&space;x_{12}&&space;...&space;&&space;x_{1n}\\&space;x_{21}&&space;x_{22}&&space;...&space;&&space;x_{2n}\\&space;&&space;&...&space;&&space;\\&space;x_{m1}&&space;x_{m2}&&space;...&space;&&space;x_{mn}&space;\end{bmatrix}&space;}" title="\underset{m\times n}{Data}= \overset{D1 \ \ \ D2 \ \ \ \ ... \ \ \ Dn}{ \begin{bmatrix} x_{11}& x_{12}& ... & x_{1n}\\ x_{21}& x_{22}& ... & x_{2n}\\ & &... & \\ x_{m1}& x_{m2}& ... & x_{mn} \end{bmatrix} }" />
 
