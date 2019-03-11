@@ -50,9 +50,22 @@ PCA即Principal Component Analysis, 主成分分析。主要思想是数据降�
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="https://latex.codecogs.com/gif.latex?=v^{T}(\sum_{i=1}^{n}x_{i}x_{i}^{T})v" title="=v^{T}(\sum_{i=1}^{n}x_{i}x_{i}^{T})v" />
 
-设<img src="https://latex.codecogs.com/gif.latex?C=\sum_{i=1}^{n}x_{i}x_{i}^{T}" title="C=\sum_{i=1}^{n}x_{i}x_{i}^{T}" />， 则C为协方差矩阵。则：
+设<img src="https://latex.codecogs.com/gif.latex?C=\sum_{i=1}^{n}x_{i}x_{i}^{T}" title="C=\sum_{i=1}^{n}x_{i}x_{i}^{T}" />， 则C为协方差矩阵。为什么呢？推导如下——
 
-<img src="https://latex.codecogs.com/gif.latex?\sigma&space;^{2}=v^{T}Cv" title="\sigma ^{2}=v^{T}Cv" />
+对于一个有m个n维样本的样本集，我们把它写成行向量形式，即每行为一个样本，每一列为一个维度，且维度分别为D1,D2,...,Dn：
+<img src="https://latex.codecogs.com/gif.latex?\underset{m\times&space;n}{Data}=&space;\overset{D1&space;\&space;\&space;\&space;D2&space;\&space;\&space;\&space;\&space;...&space;\&space;\&space;\&space;Dn}{&space;\begin{bmatrix}&space;x_{11}&&space;x_{12}&&space;...&space;&&space;x_{1n}\\&space;x_{21}&&space;x_{22}&&space;...&space;&&space;x_{2n}\\&space;&&space;&...&space;&&space;\\&space;x_{m1}&&space;x_{m2}&&space;...&space;&&space;x_{mn}&space;\end{bmatrix}&space;}" title="\underset{m\times n}{Data}= \overset{D1 \ \ \ D2 \ \ \ \ ... \ \ \ Dn}{ \begin{bmatrix} x_{11}& x_{12}& ... & x_{1n}\\ x_{21}& x_{22}& ... & x_{2n}\\ & &... & \\ x_{m1}& x_{m2}& ... & x_{mn} \end{bmatrix} }" />
+
+求改样本集的协方差矩阵：
+
+<img src="https://latex.codecogs.com/gif.latex?\underset{n\times&space;n}{C}=&space;\begin{bmatrix}&space;Cov(D1,D1)&&space;Cov(D1,D2)&&space;...&space;&&space;Cov(D1,Dn)\\&space;Cov(D2,D1)&&space;Cov(D2,D2)&&space;...&space;&&space;Cov(D2,Dn)\\&space;&&space;&...&space;&&space;\\&space;Cov(Dn,D1)&&space;Cov(Dn,D2)&&space;...&space;&&space;Cov(Dn,Dn)&space;\end{bmatrix}" title="\underset{n\times n}{C}= \begin{bmatrix} Cov(D1,D1)& Cov(D1,D2)& ... & Cov(D1,Dn)\\ Cov(D2,D1)& Cov(D2,D2)& ... & Cov(D2,Dn)\\ & &... & \\ Cov(Dn,D1)& Cov(Dn,D2)& ... & Cov(Dn,Dn) \end{bmatrix}" />
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="https://latex.codecogs.com/gif.latex?=\frac{1}{m-1}&space;\begin{bmatrix}&space;x_{11}x_{11}&plus;x_{21}x_{21}&plus;...&plus;x_{m1}x_{m1}&&space;x_{11}x_{12}&plus;x_{21}x_{22}&plus;...&plus;x_{m1}x_{m2}&&space;...&space;&&space;x_{11}x_{1n}&plus;x_{21}x_{2n}&plus;...&plus;x_{m1}x_{mn}\\&space;x_{12}x_{11}&plus;x_{22}x_{21}&plus;...&plus;x_{m2}x_{m1}&&space;x_{12}x_{12}&plus;x_{22}x_{22}&plus;...&plus;x_{m2}x_{m2}&&space;...&space;&&space;x_{12}x_{1n}&plus;x_{22}x_{2n}&plus;...&plus;x_{m2}x_{mn}\\&space;&&space;&...&space;&&space;\\&space;x_{1n}x_{11}&plus;x_{2n}x_{21}&plus;...&plus;x_{mn}x_{m1}&&space;x_{1n}x_{12}&plus;x_{2n}x_{22}&plus;...&plus;x_{mn}x_{m2}&&space;...&space;&&space;x_{1n}x_{1n}&plus;x_{2n}x_{2n}&plus;...&plus;x_{mn}x_{mn}&space;\end{bmatrix}" title="=\frac{1}{m-1} \begin{bmatrix} x_{11}x_{11}+x_{21}x_{21}+...+x_{m1}x_{m1}& x_{11}x_{12}+x_{21}x_{22}+...+x_{m1}x_{m2}& ... & x_{11}x_{1n}+x_{21}x_{2n}+...+x_{m1}x_{mn}\\ x_{12}x_{11}+x_{22}x_{21}+...+x_{m2}x_{m1}& x_{12}x_{12}+x_{22}x_{22}+...+x_{m2}x_{m2}& ... & x_{12}x_{1n}+x_{22}x_{2n}+...+x_{m2}x_{mn}\\ & &... & \\ x_{1n}x_{11}+x_{2n}x_{21}+...+x_{mn}x_{m1}& x_{1n}x_{12}+x_{2n}x_{22}+...+x_{mn}x_{m2}& ... & x_{1n}x_{1n}+x_{2n}x_{2n}+...+x_{mn}x_{mn} \end{bmatrix}" />
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="https://latex.codecogs.com/gif.latex?=\frac{1}{m-1}\sum_{i=1}^{n}x_{i}x_{i}^{T}" />
+
+常数项不重要，将其隐去，则<img src="https://latex.codecogs.com/gif.latex?C=\sum_{i=1}^{n}x_{i}x_{i}^{T}" title="C=\sum_{i=1}^{n}x_{i}x_{i}^{T}" /> 推导完毕。
+
+回到上面的方差公式：<img src="https://latex.codecogs.com/gif.latex?\sigma&space;^{2}=v^{T}Cv" title="\sigma ^{2}=v^{T}Cv" />
 
 所以接下来我们要求取一个单位向量<img src="https://latex.codecogs.com/gif.latex?v" title="v" />（即约束条件：<img src="https://latex.codecogs.com/gif.latex?v^{T}v=1" title="v^{T}v=1" />）使得方差<img src="https://latex.codecogs.com/gif.latex?v^{T}Cv" title="v^{T}Cv" />最大
 
