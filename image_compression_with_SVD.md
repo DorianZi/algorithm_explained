@@ -1,6 +1,6 @@
 # 基于SVD的图像压缩实践
 
-在之前的介绍里，我们讲过了SVD的基本原理。一个mxn的矩阵A可以分解为三个矩阵相乘：
+在[之前的介绍](https://github.com/DorianZi/algorithm_explained/blob/master/matrix_SVD_decomposition.md)里，我们讲过了SVD分解的基本原理。一个mxn的矩阵A可以分解为三个矩阵相乘：
 
 A可以被U和V表示，而其中的奇异值<img src="https://latex.codecogs.com/gif.latex?\lambda_{1},\lambda_{2},...,\lambda_{n}" title="\lambda_{1},\lambda_{2},...,\lambda_{n}" />分别为U的列向量和V的行向量的权重：
 
@@ -14,4 +14,92 @@ A可以被U和V表示，而其中的奇异值<img src="https://latex.codecogs.co
 
 <img src="https://github.com/DorianZi/algorithm_explained/raw/master/res/svd_cut.png">
 
+同时我也可以称作其为图像降噪，因为可以认为奇异值非常小的那些项是噪声。
+Anyway, 直接上代码
+
+## 完整代码
+```
+import matplotlib.pyplot as plt
+from optparse import OptionParser
+import numpy as np
+import sys
+
+# Get image path
+def getOptions():
+	parser = OptionParser()
+	parser.add_option("-p", "--picture", dest="picture", action="store", help="specify the input picture path")
+	parser.add_option("-c", "--count", dest="count", action="store", help="specify the required singular value count")
+	options, _ = parser.parse_args()
+	if not options.picture:
+		sys.exit("-p/--picture is required!")
+	return options
+
+
+def compress(K,U,Sigma,VT,verbose=False):
+	if verbose:
+		print("Selected singular value count: {}".format(K))
+		print("Before compression: {} {} {}".format(U.shape, Sigma.shape, VT.shape))
+	U_K = U[:, :K]
+	Sigma_K = np.eye(K)*Sigma[:K]   # Because Sigma matrix is a vector instead of a matrix, need to convert to matrix
+	VT_K = VT[:K, :]
+	if verbose:
+		print("After  compression: {} {} {}".format(U_K.shape, Sigma_K.shape, VT_K.shape))
+	return np.matmul(np.matmul(U_K,Sigma_K), VT_K)
+
+
+
+if __name__ == "__main__":
+	options = getOptions()
+
+	# Read image
+	pMatrix= np.array(plt.imread(options.picture))
+	print("Original image shape: {}".format(pMatrix.shape))
+
+	# Do SVD decomposition for each channel of RGB
+	R, G, B = pMatrix[:,:,0], pMatrix[:,:,1], pMatrix[:,:,2]
+	U_R,Sigma_R,VT_R = np.linalg.svd(R)
+	U_G,Sigma_G,VT_G = np.linalg.svd(G)
+	U_B,Sigma_B,VT_B = np.linalg.svd(B)
+
+	# compress by top K singular values
+	K = int(options.count) if options.count else 100
+	R_new = compress(K,U_R,Sigma_R,VT_R,verbose=True)
+	G_new = compress(K,U_G,Sigma_G,VT_G)
+	B_new = compress(K,U_B,Sigma_B,VT_B)
+	pMatrix_new = np.stack((R_new,G_new,B_new),2)  # Compose R,G,B channels back to complete image
+	print("Compresses image shape: {}".format(pMatrix_new.shape))
+
+	# show image after compress
+	plt.imshow(pMatrix_new)
+	plt.show()
+	sys.exit()
+
+
+
+```
+
+## 运行结果
+```
+ $ python imageCompress.py -p pic_1.png -c 1000
+      Original image shape: (1440L, 1080L, 4L)
+      Selected singular value count: 1000
+      Before compression: (1440L, 1440L) (1080L,) (1080L, 1080L)
+      After  compression: (1440L, 1000L) (1000L, 1000L) (1000L, 1080L)
+      Compresses image shape: (1440L, 1080L, 3L)
+```
+当K=10，即选取10个奇异值进行压缩：
+
+<img src="https://github.com/DorianZi/algorithm_explained/blob/master/res/SVD_k_10.png?raw=true">
+
+当K=100
+
+<img src="https://github.com/DorianZi/algorithm_explained/blob/master/res/SVD_k_100.png?raw=true">
+
+当K=500
+
+<img src="https://github.com/DorianZi/algorithm_explained/blob/master/res/SVD_k_500.png?raw=true">
+
+当K=1000
+
+<img src="https://github.com/DorianZi/algorithm_explained/blob/master/res/SVD_k_1000.png?raw=true">
 
