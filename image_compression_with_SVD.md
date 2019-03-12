@@ -91,6 +91,14 @@ if __name__ == "__main__":
 
 <img src="https://github.com/DorianZi/algorithm_explained/blob/master/res/SVD_k_10.png?raw=true">
 
+当K=30
+
+<img src="https://github.com/DorianZi/algorithm_explained/blob/master/res/SVD_k_30.png?raw=true">
+
+当K=50
+
+<img src="https://github.com/DorianZi/algorithm_explained/blob/master/res/SVD_k_50.png?raw=true">
+
 当K=100
 
 <img src="https://github.com/DorianZi/algorithm_explained/blob/master/res/SVD_k_100.png?raw=true">
@@ -99,7 +107,4 @@ if __name__ == "__main__":
 
 <img src="https://github.com/DorianZi/algorithm_explained/blob/master/res/SVD_k_500.png?raw=true">
 
-当K=1000
-
-<img src="https://github.com/DorianZi/algorithm_explained/blob/master/res/SVD_k_1000.png?raw=true">
 
