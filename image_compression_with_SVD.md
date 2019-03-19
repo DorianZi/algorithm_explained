@@ -2,17 +2,17 @@
 
 在[之前的介绍](https://github.com/DorianZi/algorithm_explained/blob/master/matrix_SVD_decomposition.md)里，我们讲过了SVD分解的基本原理。一个mxn的矩阵A可以分解为三个矩阵相乘：
 
-A可以被U和V表示，而其中的奇异值<img src="https://latex.codecogs.com/gif.latex?\lambda_{1},\lambda_{2},...,\lambda_{n}" title="\lambda_{1},\lambda_{2},...,\lambda_{n}" />分别为U的列向量和V的行向量的权重：
+A可以被U和V表示，而其中的奇异值<img src="https://latex.codecogs.com/gif.latex?\lambda_{1},\lambda_{2},...,\lambda_{n}" title="\lambda_{1},\lambda_{2},...,\lambda_{n}"  style="display:inline;vertical-align:text-top;"/>分别为U的列向量和V的行向量的权重：
 
-<img src="https://latex.codecogs.com/gif.latex?\underset{m\times&space;n}{A}=\lambda_{1}u_{1}v^{T}_{1}&plus;\lambda_{2}u_{2}v^{T}_{2}&plus;...&plus;\lambda_{n}u_{n}v^{T}_{n}" title="=\lambda_{1}u_{1}v^{T}_{1}+\lambda_{2}u_{2}v^{T}_{2}+...+\lambda_{n}u_{n}v^{T}_{n}" />
+<img src="https://latex.codecogs.com/gif.latex?\underset{m\times&space;n}{A}=\lambda_{1}u_{1}v^{T}_{1}&plus;\lambda_{2}u_{2}v^{T}_{2}&plus;...&plus;\lambda_{n}u_{n}v^{T}_{n}" title="=\lambda_{1}u_{1}v^{T}_{1}+\lambda_{2}u_{2}v^{T}_{2}+...+\lambda_{n}u_{n}v^{T}_{n}"  style="display:inline;vertical-align:text-top;"/>
 
 通常，前k大的奇异值就足以占了所以奇异值90%的比重，这种情况下，我们只需要选择前k个奇异值，对应地选择U的前k个列向量，还有V的前k个行向量，就可以近似表示出矩阵A:
 
-<img src="https://latex.codecogs.com/gif.latex?\underset{m\times&space;n}{\tilde{A}}=\underset{m\times&space;k}{(u_{1},u_{2},...,u_{k})}&space;\underset{k\times&space;k}{\begin{bmatrix}&space;\lambda_{1}&&space;&&space;&&space;0&space;\\&space;&&space;\lambda_{2}&&space;&&space;\\&space;&&space;&&space;...&&space;\\&space;&&space;&&space;&&space;\lambda_{k}\end{bmatrix}}&space;\underset{k\times&space;n}{\begin{pmatrix}&space;v^{T}_{1}\\&space;v^{T}_{2}\\&space;...\\&space;v^{T}_{k}&space;\end{pmatrix}&space;}">
+<img src="https://latex.codecogs.com/gif.latex?\underset{m\times&space;n}{\tilde{A}}=\underset{m\times&space;k}{(u_{1},u_{2},...,u_{k})}&space;\underset{k\times&space;k}{\begin{bmatrix}&space;\lambda_{1}&&space;&&space;&&space;0&space;\\&space;&&space;\lambda_{2}&&space;&&space;\\&space;&&space;&&space;...&&space;\\&space;&&space;&&space;&&space;\lambda_{k}\end{bmatrix}}&space;\underset{k\times&space;n}{\begin{pmatrix}&space;v^{T}_{1}\\&space;v^{T}_{2}\\&space;...\\&space;v^{T}_{k}&space;\end{pmatrix}&space;}" style="display:inline;vertical-align:text-top;">
 
 在图像处理中，我们把一张图片的每个像素点作为矩阵中的元素，则我们得到一个mxn的矩阵，利用SVD分解，取前k个奇异值，就能实现图像的压缩：
 
-<img src="https://github.com/DorianZi/algorithm_explained/raw/master/res/svd_cut.png">
+<img src="https://github.com/DorianZi/algorithm_explained/raw/master/res/svd_cut.png" style="display:inline;vertical-align:text-top;">
 
 同时我也可以称作其为图像降噪，因为可以认为奇异值非常小的那些项是噪声。
 Anyway, 直接上代码
@@ -89,22 +89,22 @@ if __name__ == "__main__":
 ```
 当K=10，即选取10个奇异值进行压缩：
 
-<img src="https://github.com/DorianZi/algorithm_explained/blob/master/res/SVD_k_10.png?raw=true">
+<img src="https://github.com/DorianZi/algorithm_explained/blob/master/res/SVD_k_10.png?raw=true" style="display:inline;vertical-align:text-top;">
 
 当K=30
 
-<img src="https://github.com/DorianZi/algorithm_explained/blob/master/res/SVD_k_30.png?raw=true">
+<img src="https://github.com/DorianZi/algorithm_explained/blob/master/res/SVD_k_30.png?raw=true" style="display:inline;vertical-align:text-top;">
 
 当K=50
 
-<img src="https://github.com/DorianZi/algorithm_explained/blob/master/res/SVD_k_50.png?raw=true">
+<img src="https://github.com/DorianZi/algorithm_explained/blob/master/res/SVD_k_50.png?raw=true" style="display:inline;vertical-align:text-top;">
 
 当K=100
 
-<img src="https://github.com/DorianZi/algorithm_explained/blob/master/res/SVD_k_100.png?raw=true">
+<img src="https://github.com/DorianZi/algorithm_explained/blob/master/res/SVD_k_100.png?raw=true" style="display:inline;vertical-align:text-top;">
 
 当K=500
 
-<img src="https://github.com/DorianZi/algorithm_explained/blob/master/res/SVD_k_500.png?raw=true">
+<img src="https://github.com/DorianZi/algorithm_explained/blob/master/res/SVD_k_500.png?raw=true" style="display:inline;vertical-align:text-top;">
 
-
+可见，当使用前100个奇异值（约占全部奇异值数量的10%），就可以比较好地表示原图像了
