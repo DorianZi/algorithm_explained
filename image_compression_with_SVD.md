@@ -1,3 +1,10 @@
+---
+title: Image Compression by SVD 基于奇异值分解的图像压缩
+date: 2019-03-10 07:50:00
+categories: ["Technic"]
+tags: ["Algorithm", "SVD"]
+---
+
 # 基于SVD的图像压缩实践
 
 在[之前的介绍](https://github.com/DorianZi/algorithm_explained/blob/master/matrix_SVD_decomposition.md)里，我们讲过了SVD分解的基本原理。一个mxn的矩阵A可以分解为三个矩阵相乘：

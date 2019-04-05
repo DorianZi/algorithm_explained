@@ -1,3 +1,10 @@
+---
+title: Matrix Similarity 矩阵相似
+date: 2019-03-04 00:00:00
+categories: ["Technic"]
+tags: ["Algorithm"]
+---
+
 # 相似矩阵
 
 相似矩阵表达的是：同一个线性变换在不同基下的表达。
@@ -39,4 +46,5 @@
 ==>
 
 <img src="https://latex.codecogs.com/gif.latex?P^{-1}AP=B" title="P^{-1}AP=B" style="display:inline;vertical-align:text-top;"/>
+
 
